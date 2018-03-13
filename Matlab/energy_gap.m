@@ -8,7 +8,7 @@ clc; clear all; close all;
 %% initialize all the variables
 alpha = 1;
 vol = 2;
-c = 10; % convergence coefficient
+c = 5; % convergence coefficient
 target = 0.62; % value to reach
 
 delta = sqrt(2)*[1/2, 1/2]; % displacement of the electron
@@ -25,7 +25,7 @@ sum1 = 0; sum2 = 0; sum3 = 0; sum4 = 0;
 for Gx = -G_cut:G_cut
     for Gy = -G_cut:G_cut
         G = pi*sqrt(2)*[Gx, Gy];
-        sum1 = sum1+((cos(G*delta')-1)*f_phi(alpha/2,G*G'/4/c));
+        sum1 = sum1+((cos(G*delta')-1)*f_phi(-alpha/2,G*G'/4/c));
     end
 end
 sum1 = sum1*pi*c^(alpha/2-1)/vol;
