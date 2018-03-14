@@ -1,5 +1,6 @@
 # here all the files that must be avoided in the update
 
 /Bibliografia/*
+/TeX/*
 
 
