@@ -2,7 +2,7 @@ clc; clear all; close all;
 %% initialize all the variables
 alpha = 1;
 vol = 1;
-c = 10; % convergence coefficient
+c = 5; % convergence coefficient
 
 delta = [1/2, 1/2]; % displacement of the electron
 
@@ -29,6 +29,7 @@ sum2 = f_selfinteraction(norm(delta), c, alpha)-f_selfinteraction(0, c, alpha);
 for Rx = -R_cut:R_cut
     for Ry = -R_cut:R_cut
         R = [Rx, Ry];
+        
         sum3 = sum3+(f_phi(alpha/2-1,norm(R+delta)^2*c)-f_phi(alpha/2-1,norm(R)^2*c));
     end
 end
@@ -41,4 +42,3 @@ sum4 = c^(alpha/2)*sum4;
 gap = (sum1-sum2+sum3-sum4)/gamma(alpha/2);
 disp('the final energy gap is:')
 disp(gap)
-
