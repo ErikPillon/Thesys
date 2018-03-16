@@ -50,7 +50,7 @@ sum4 = c^(alpha/2)*sum4;
 % the idea is to double the gap energy + subtract two "fake" interactions  
 % + add the two real "interactions"
 
-%intialize the varables
+%intialize the variables
 diff1_f = 0; diff1_r = 0; diff2_f = 0; diff2_r = 0;
 
 %evaluate directly the energy difference

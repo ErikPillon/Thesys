@@ -43,9 +43,11 @@ G_cut = 10;
 R_cut = 10;
 
 a = [1, 0];
-rot = [cos(theta), -sin(theta); ...
-       sin(theta), cos(theta) ];
+rot = [cos(theta), -sin(theta); sin(theta), cos(theta)];
 b = (ratio*rot*a')';
+
+% the displacements must be converted in the lattice coordinate
+delta = delta(1)*a+delta(2)*b; 
 
 % evaluation of the reciprocal vectors
 kj = [a',b']\eye(2);
