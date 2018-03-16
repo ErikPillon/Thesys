@@ -45,15 +45,13 @@ R_cut = 10;
 a = [1, 0];
 rot = [cos(theta), -sin(theta); ...
        sin(theta), cos(theta) ];
-b = (ratio*rot*a')';
+b = ratio*rot*a;
 
 % evaluation of the reciprocal vectors
-kj = [a',b']\eye(2);
-kj = 2*pi*kj;
+[kj] = [a',b']\2*pi*ones(2);
 
-G_coeff(1) = norm(kj(:,1)); %reciprocal space rescaling
-G_coeff(2) = norm(kj(:,2));
-R_coeff = [1,ratio]; % real space rescaling
+coeff(1) = norm(kj(:,1));
+coeff(2) = norm(kj(:,2));
 
 % the final summation is given by [sum1-sum2+sum3-sum4]/gammma(alpha/2);
 sum1 = 0; sum2 = 0; sum3 = 0; sum4 = 0;
@@ -62,7 +60,7 @@ sum1 = 0; sum2 = 0; sum3 = 0; sum4 = 0;
 % sum1
 for Gx = -G_cut:G_cut
     for Gy = -G_cut:G_cut
-        G = [Gx, Gy].*G_coeff;
+        G = [Gx, Gy].*coeff;
         sum1 = sum1+((cos(G*delta')-1)*f_phi(-alpha/2,G*G'/4/c));
     end
 end
@@ -74,7 +72,7 @@ sum2 = f_selfinteraction(norm(delta), c, alpha)-f_selfinteraction(0, c, alpha);
 % sum3
 for Rx = -R_cut:R_cut
     for Ry = -R_cut:R_cut
-        R = [Rx, Ry].*R_coeff;
+        R = [Rx, Ry];
         sum3 = sum3+(f_phi(alpha/2-1,norm(R+delta)^2*c)-f_phi(alpha/2-1,norm(R)^2*c));
     end
 end
