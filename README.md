@@ -2,7 +2,7 @@
 This repository will contain my master thesys developed at Institute Néel, Grenoble.
 
 ## Working Title
-*Emergence of collective excitations in strongly interacting electron systems in low dimensional systems*
+**Emergence of collective excitations in strongly interacting electron systems in low dimensional systems**
 
 ## Supervisors
 - FRATINI Simone, Institut Néel, département MCBT
@@ -20,10 +20,13 @@ Long range electron-electron interaction, strongly interacting systems, non-conv
 - [x] Reproduce the results on PRB
 - [x] Deduce the formula for the two-excitation movements
 - [x] Implement an algorithm that allows to reproduce the results on PRB 
-- [ ] Implement the functions that do the above formulas in function of $\theta$ and $\frac{a}{b}$
-- [ ] Define the above functions for a displacement $\delta$
-- [ ] Define the above functions for a double displacement $\delta'$
-- [ ] Plot the energy of the first displacement toward the second displacement configuration wrt $\alpha$
+- [x] Implement the functions that do the above formulas in function of $\theta$ and $\frac{a}{b}$
+- [x] Define the above functions for a displacement $\delta$
+- [x] Define the above functions for a double displacement $\delta'$
+- [x] Plot the energy of the first displacement toward the second displacement configuration wrt $\alpha$
+- [ ] Define the energy wrt alpha for the displacement in a square lattice
+- [ ] Triangular excitation with parameter h/a and alpha=1
+- [ ] Try to do the calculation for a rectangular lattice
 
 ## External links
 This work is updated also on my personal [ResearchGate webpage](https://www.researchgate.net/project/Long-range-electron-electron-interactions-and-charge-frustration-2).
