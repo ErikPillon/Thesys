@@ -50,7 +50,7 @@ b = (ratio*rot*a')';
 delta = delta(1)*a+delta(2)*b; 
 
 % evaluation of the reciprocal vectors
-kj = [a',b']\(2*pi*eye(2));
+kj = [a;b]\(2*pi*eye(2));
 
 G_coeff(1) = norm(kj(:,1)); %reciprocal space rescaling
 G_coeff(2) = norm(kj(:,2));
