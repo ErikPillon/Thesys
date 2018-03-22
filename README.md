@@ -24,9 +24,10 @@ Long range electron-electron interaction, strongly interacting systems, non-conv
 - [x] Define the above functions for a displacement $\delta$
 - [x] Define the above functions for a double displacement $\delta'$
 - [x] Plot the energy of the first displacement toward the second displacement configuration wrt $\alpha$
-- [ ] Define the energy wrt alpha for the displacement in a square lattice
-- [ ] Triangular excitation with parameter h/a and alpha=1
+- [x] Define the energy wrt alpha for the displacement in a square lattice
+- [x] Triangular excitation with parameter h/a and alpha=1
 - [ ] Try to do the calculation for a rectangular lattice
+- [ ] Calculations for multiple different movements
 
 ## External links
 This work is updated also on my personal [ResearchGate webpage](https://www.researchgate.net/project/Long-range-electron-electron-interactions-and-charge-frustration-2).
@@ -35,7 +36,8 @@ The official page of the call for this _stage_ is available on this [page](http:
 
 ## Notes
 
-all the matlab files beginning with f_ _name of the function_.m were created by myself.
+all the Matlab files beginning with f_ _name of the function_.m were created by myself.
 
 ## Files
+
 
