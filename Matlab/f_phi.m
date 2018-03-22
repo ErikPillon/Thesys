@@ -12,7 +12,6 @@ function [energy] = f_phi(p,a)
 % the default value is 0 for all the function
 
 f = @(t) exp(-a.*t).*t.^p;
-
 energy = 0; % default value
 
 if a == 0

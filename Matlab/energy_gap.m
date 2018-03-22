@@ -1,5 +1,4 @@
 clc; clear all; close all;
-
 % algorithm for the implementation of the ewald summation
 % following notes on pages 3 and following
 % 
@@ -8,7 +7,7 @@ clc; clear all; close all;
 %% initialize all the variables
 alpha = 1;
 vol = 2;
-c = 10; % convergence coefficient
+c = 5; % convergence coefficient
 target = 0.62; % value to reach
 
 delta = sqrt(2)*[1/2, 1/2]; % displacement of the electron
