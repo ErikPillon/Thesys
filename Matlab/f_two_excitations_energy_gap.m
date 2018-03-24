@@ -30,7 +30,7 @@ if nargin < 7
     alpha = 1;
     if nargin < 5
         ratio = 1;
-        theta = pi/2
+        theta = pi/2;
       if nargin < 3
         error(message('f_one_excitation_energy_gap:not enough input arguments'));
       end  

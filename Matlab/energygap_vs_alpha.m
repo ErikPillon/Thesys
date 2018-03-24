@@ -16,7 +16,8 @@ for alpha = alpha_range
     [mov1, mov2] = f_two_excitations_energy_gap(delta, delta2, site, ratio, theta, alpha); 
     gap1(i) = mov1;
     gap2(i) = mov2;
-    i = i+1
+    i = i+1;
+    alpha
 end
 
 figure
