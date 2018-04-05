@@ -10,6 +10,7 @@ clc; clear all; close all;
 delta = [1/2, 1/2]; % first displacement
 ratio = 1;
 theta = pi/2;
+alpha = 1;
 
 possible_movements = [1,1;1,-1;-1,1;-1,-1]/2;
 radius = 2;
@@ -31,7 +32,7 @@ for site = possible_sites'
     for delta2 = possible_movements'
         delta2 = delta2';
         if ~(site+delta2 == delta)
-            [energy1, energy2] = f_two_excitations_energy_gap(delta, delta2, site); 
+            [energy1,energy2]=f_two_excitations_energy_gap(delta,delta2,site,ratio,theta,alpha); 
             second_excitation(i,:) = [site, delta2, energy2];
             i = i+1
         end
@@ -47,5 +48,7 @@ disp('SUCCESFULLY COMPLETED!')
 energy_sorted = second_excitation(I,:);
 energy_sorted(:,end) = energy_sorted(:,end)-2*energy1
 
-data = fopen('doubleMovementsData.txt','w');
-fprintf(data,'%4d %4d %4d %4d %12.8f\n',energy_sorted);
+save('doubleMovements_alpha1_theta1.txt', 'energy_sorted', '-ascii', '-double', '-tabs')
+% data = fopen('doubleMovementsData.txt','w');
+% fprintf(data,'%4d %4d %4d %4d %12.8f\n',energy_sorted);
+% fclose('doubleMovementsData.txt');

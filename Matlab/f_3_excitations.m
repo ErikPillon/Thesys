@@ -79,6 +79,5 @@ diff3_r = 1/norm(-dist2-delta3+delta)^alpha;
 diff4_f = 1/norm(-delta3-dist2+dist1)^alpha;
 diff4_r = 1/norm(-delta3-dist2+dist1+delta2)^alpha;
 
-
 gap3 = gap2+energy3-diff1_f+diff1_r-diff2_f+diff2_r-diff3_f+diff3_r-diff4_f+diff4_r;
 end

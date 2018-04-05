@@ -41,13 +41,7 @@ end
 % the two energy gap can be evaluated with the function for only one displacement.
 % We need only to take into account the correction to this configuration
 gap1 = f_one_excitation_energy_gap(delta, ratio, theta, alpha);
-% for improving the algorithm one could use the following shortcut but it
-% should be use carefully
-% if norm(delta2) == norm(delta)
-%     gap2 = gap1;
-% else
-%     gap2 = f_one_excitation_energy_gap(delta2, ratio, theta, alpha);
-% end
+if norm(delta2
 gap2 = f_one_excitation_energy_gap(delta2, ratio, theta, alpha);
 
 %% evaluation of the energy gap of the two coupled displacements
