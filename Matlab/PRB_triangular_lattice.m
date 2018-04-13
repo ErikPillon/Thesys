@@ -1,4 +1,5 @@
 clc; clear all; close all;
+
 % TRIANGULAR LATTICE - SOLVED
 %
 % algorithm for the implementation of the ewald summation
@@ -97,15 +98,15 @@ plot(alpha_range, gap1, alpha_range, energy2)
 grid on
 title('Energy gap from ground state')
 xlabel('\alpha')
-ylabel('Energy gap (e^2/vol)')
+ylabel('Energy gap $(e^2/vol)$', 'interpreter','latex')
 legend('One displacement','Two displacements')
-saveas(gcf,'Energy_gap_tringular_lattice.eps','epsc')
+% saveas(gcf,'Energy_gap_tringular_lattice.eps','epsc')
 % plot the second figure zoomed 
 figure(2)
 plot(alpha_range(1:15), gap1(1:15), alpha_range(1:15), energy2(1:15))
 grid on
 title('Energy gap from ground state')
 xlabel('\alpha')
-ylabel('Energy gap (e^2/vol)')
+ylabel('Energy gap $(e^2/vol)$', 'interpreter','latex')
 legend('One displacement','Two displacements')
-saveas(gcf,'Energy_gap_tringular_lattice_zoomed.eps','epsc')
+% saveas(gcf,'Energy_gap_tringular_lattice_zoomed.eps','epsc')

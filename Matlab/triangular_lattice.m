@@ -9,7 +9,7 @@ clc; clear all; close all;
 delta = [1/2, 1/2]; % displacement
 site = [1,0]; % site of the second displacement
 delta2 = [-1/2, -1/2]; % second displacement 
-ratio = 1/(2*sin(pi/3)); 
+ratio = 2*sin(pi/3); 
 theta = pi/2;
 
 gap1 = 0;
