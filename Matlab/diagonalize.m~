@@ -57,9 +57,15 @@ view(7,4)
 figurename=['Bands_Vt_' num2str(a) '_v_'  num2str(v) '.eps'];
 saveas(gcf,figurename,'epsc')
 %% let changing t
-
 v = 0;
-t = 0.1;
+t = 1;
+
+Energy = @(v,t,kx,ky) [E1, -2*v*cos(dx/2-dy/2),0,0,-t*exp(1i*kx/2),-t*exp(-1i*kx/2);...
+     -2*v*cos(dx/2-dy/2), E1,0,0,-t*exp(1i*ky/2),-t*exp(-1i*ky/2);... 
+     0,0,E1,-2*v*cos(dx/2-dy/2),-t*exp(-1i*kx/2),-t*exp(1i*kx/2);...
+     0,0,-2*v*cos(dx/2-dy/2),E1,-t*exp(-1i*ky/2),-t*exp(1i*ky/2);...
+     -t*exp(-1i*kx/2),-t*exp(-1i*ky/2),-t*exp(1i*kx/2),-t*exp(1i*ky/2),E2,0;...
+     -t*exp(1i*kx/2),-t*exp(1i*ky/2),-t*exp(-1i*kx/2),-t*exp(-1i*ky/2),0,E2];
 
 x = 1;
 y = 1;
@@ -74,7 +80,6 @@ for kx = linspace(-pi,pi,20)
     end
     x = x+1;
 end
-
 a=V/t;
 figure
 titlemessage = ['Electronic Energy bands \break $V/t=$ ' num2str(a) '; $v=$' num2str(v)];
@@ -84,13 +89,12 @@ for i=1:6
     hold on
     mesh(Band(:,:,i))
 end
-view(7,0)
+view(7,4)
 
 figurename=['Bands_Vt_' num2str(a) '_v_'  num2str(v) '.eps'];
 saveas(gcf,figurename,'epsc')
 
 %% v = 0 no allowed movements along the diagonals
-t = 1
 x = 1;
 y = 1;
 Band = zeros(20,20,6);

@@ -89,6 +89,6 @@ plot(alpha_range(1:15), gap1(1:15), alpha_range(1:15), energy2(1:15))
 grid on
 title('Energy gap from ground state')
 xlabel('\alpha')
-ylabel('Energy gap (e^2/vol)')
+ylabel('Energy gap (e^2/vol)', 'interpreter', 'latex')
 legend('One displacement','Two displacements')
 saveas(gcf,'Energy_gap_zoomed.eps','epsc')
