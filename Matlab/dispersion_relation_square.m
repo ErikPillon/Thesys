@@ -140,6 +140,8 @@ for i=1:6
     hold on
     plot(linspace(0,3,count-1),Disp_r(i,:))
 end
+xlabel('\Gamma                            X                             M                            \Gamma')
+set(gca,'xtick',[])
 
 cd Im
 figurename=['DispR_squareL_Vt_' num2str(a) '_v_'  num2str(v) '.eps'];
