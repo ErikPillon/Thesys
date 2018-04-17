@@ -1,5 +1,4 @@
 clc; clear all; close all;
-
 %% TRIANGULAR LATTICE
 %
 % script for one and two excitations on a trinangular lattice, that is 
@@ -15,7 +14,7 @@ theta = pi/2;
 [energy1,gap] = f_two_excitations_energy_gap(delta,delta2,site,ratio,theta)
 energy2 = energy1+gap;
 
-v = 0;
+v = 1;
 V = 1;
 dx = 0.5;
 dy = 0.5;
@@ -54,28 +53,30 @@ for i=1:6
 end
 view(7,4)
 
-% figurename=['Bands_Vt_' num2str(a) '_v_'  num2str(v) '.eps'];
-% saveas(gcf,figurename,'epsc')
+cd Im
+figurename=['Bands_Vt_' num2str(a) '_v_'  num2str(v) '.eps'];
+saveas(gcf,figurename,'epsc')
+cd ..
 
-%% try now to express the dispersion relation
+%% evaluation of the dispersion relation
 Disp_r = zeros(6,1);
 count = 1;
 
-k_gm = linspace(0,pi,20);
+k_gm = linspace(0,pi,50);
 for k = k_gm
     [~,D] = eig(Energy(v,t,k,k));
     Disp_r(:,count) = diag(D);
     count = count+1;
 end
 
-k_mx = linspace(pi,0,20);
+k_mx = linspace(pi,0,50);
 for k = k_mx
     [~,D] = eig(Energy(v,t,pi,k));
     Disp_r(:,count) = diag(D);
     count = count+1;
 end
 
-k_xg = linspace(pi,0,20);
+k_xg = linspace(pi,0,50);
 for k = k_xg
     [~,D] = eig(Energy(v,t,k,0));
     Disp_r(:,count) = diag(D);
@@ -95,3 +96,5 @@ cd Im
 figurename=['DispR_Vt_' num2str(a) '_v_'  num2str(v) '.eps'];
 saveas(gcf,figurename,'epsc')
 cd ..
+
+target = E1-2*t1*(cos(2*kx)+cos(2*ky))-2*t2*(cos(kx+ky)+cos(kx-ky));
