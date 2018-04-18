@@ -69,7 +69,8 @@ dx = 0.5;
 dy = 0.5;
 E1 = energy1;
 E2 = energy2;
-t = 0.64/2/sqrt(2);
+t = 1;
+% t = 0.64/2/sqrt(2);
 
 Energy = @(v,t,kx,ky) [E1, -2*v*cos(dx/2-dy/2),0,0,-t*exp(1i*kx/2),-t*exp(-1i*kx/2);...
      -2*v*cos(dx/2-dy/2), E1,0,0,-t*exp(1i*ky/2),-t*exp(-1i*ky/2);... 
@@ -81,7 +82,7 @@ Energy = @(v,t,kx,ky) [E1, -2*v*cos(dx/2-dy/2),0,0,-t*exp(1i*kx/2),-t*exp(-1i*kx
 x = 1;
 y = 1;
 Band = zeros(20,20,6);
-
+ 
 for kx = linspace(-pi,pi,50)
     y = 1;
     for ky = linspace(-pi,pi,50)
@@ -145,5 +146,35 @@ set(gca,'xtick',[])
 
 cd Im
 figurename=['DispR_squareL_Vt_' num2str(a) '_v_'  num2str(v) '.eps'];
+saveas(gcf,figurename,'epsc')
+cd ..
+
+%% Energy level for the gamma point
+count = 1;
+V = 1;
+t = 1;
+Vt= V/t;
+Gamma = [0];
+interval = linspace(-2,2,50);
+t_int = [linspace(2,1,50),linspace(1,0.05,50)];
+figure
+hold on
+plot(interval,zeros(length(interval),1));
+for i = interval
+    for t = t_int
+        v = i*t;
+        [~,D] = eig(Energy(v,t,0,0));
+        d = sort(diag(D));
+        if abs(d(1))<0.01
+            plot(v/t,1/t,'r*')
+        end
+    end
+end
+title('Zero energy level of the \Gamma point on the square lattice')
+xlabel('v/t','interpreter','latex')
+ylabel('V/t','interpreter','latex')
+
+cd Im
+figurename=['zero_energy_level_SquareL.eps'];
 saveas(gcf,figurename,'epsc')
 cd ..
