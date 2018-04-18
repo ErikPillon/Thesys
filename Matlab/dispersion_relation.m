@@ -11,21 +11,18 @@ delta2 = [-1/2, -1/2]; % second displacement
 ratio = 2*sin(pi/3); 
 theta = pi/2;
 
-[energy1,gap] = f_two_excitations_energy_gap(delta,delta2,site,ratio,theta)
-energy2 = energy1+gap;
+[energy1,energy2] = f_two_excitations_energy_gap(delta,delta2,site,ratio,theta)
 
-v = 1;
+v = 0;
 V = 1;
-dx = 0.5;
-dy = 0.5;
 E1 = energy1;
 E2 = energy2;
 t = 1;
 
-Energy = @(v,t,kx,ky) [E1, -2*v*cos(dx/2-dy/2),0,0,-t*exp(1i*kx/2),-t*exp(-1i*kx/2);...
-     -2*v*cos(dx/2-dy/2), E1,0,0,-t*exp(1i*ky/2),-t*exp(-1i*ky/2);... 
-     0,0,E1,-2*v*cos(dx/2-dy/2),-t*exp(-1i*kx/2),-t*exp(1i*kx/2);...
-     0,0,-2*v*cos(dx/2-dy/2),E1,-t*exp(-1i*ky/2),-t*exp(1i*ky/2);...
+Energy = @(v,t,kx,ky) [E1, -2*v*cos(kx/2-ky/2),0,0,-t*exp(1i*kx/2),-t*exp(-1i*kx/2);...
+     -2*v*cos(kx/2-ky/2), E1,0,0,-t*exp(1i*ky/2),-t*exp(-1i*ky/2);... 
+     0,0,E1,-2*v*cos(kx/2-ky/2),-t*exp(-1i*kx/2),-t*exp(1i*kx/2);...
+     0,0,-2*v*cos(kx/2-ky/2),E1,-t*exp(-1i*ky/2),-t*exp(1i*ky/2);...
      -t*exp(-1i*kx/2),-t*exp(-1i*ky/2),-t*exp(1i*kx/2),-t*exp(1i*ky/2),E2,0;...
      -t*exp(1i*kx/2),-t*exp(1i*ky/2),-t*exp(-1i*kx/2),-t*exp(-1i*ky/2),0,E2];
 
@@ -91,10 +88,40 @@ for i=1:6
     hold on
     plot(linspace(0,3,count-1),Disp_r(i,:))
 end
+xlabel('\Gamma                            X                             M                            \Gamma')
+set(gca,'xtick',[])
 
 cd Im
-figurename=['DispR_Vt_' num2str(a) '_v_'  num2str(v) '.eps'];
+figurename=['DispR_TriangL_Vt_' num2str(a) '_v_'  num2str(v) '.eps'];
 saveas(gcf,figurename,'epsc')
 cd ..
 
-target = E1-2*t1*(cos(2*kx)+cos(2*ky))-2*t2*(cos(kx+ky)+cos(kx-ky));
+% target = E1-2*t1*(cos(2*kx)+cos(2*ky))-2*t2*(cos(kx+ky)+cos(kx-ky));
+
+%% Energy level for the gamma point
+count = 1;
+V = 1;
+Gamma = [0];
+interval = linspace(-2,2,50);
+t_int = [linspace(2,1,50),linspace(1,0.05,50)];
+figure
+hold on
+plot(interval,zeros(length(interval),1));
+for i = interval
+    for t = t_int
+        v = i*t;
+        [~,D] = eig(Energy(v,t,0,0));
+        d = sort(diag(D));
+        if abs(d(1))<0.01
+            plot(v/t,1/t,'r*')
+        end
+    end
+end
+title('Zero energy level of the \Gamma point on the triangular lattice')
+xlabel('v/t','interpreter','latex')
+ylabel('V/t','interpreter','latex')
+
+cd Im
+figurename=['zero_energy_level_TriangL.eps'];
+saveas(gcf,figurename,'epsc')
+cd ..

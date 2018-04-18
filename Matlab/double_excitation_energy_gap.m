@@ -54,11 +54,14 @@ sum4 = c^(alpha/2)*sum4;
 diff1_f = 0; diff1_r = 0; diff2_f = 0; diff2_r = 0;
 
 %evaluate directly the energy difference
-diff1_f = 1/norm([sqrt(2)/2,sqrt(2)/2])^alpha;
-diff1_r = 1/norm([sqrt(2),0])^alpha;
+delta = sqrt(2)*[1/2, 1/2];
+delta2 = -sqrt(2)*[1/2, 1/2];
+dist = sqrt(2)*[1,0];
 
-diff2_f = 1/norm([sqrt(2)/2,sqrt(2)/2])^alpha;
-diff2_r = 1/norm([sqrt(2),0])^alpha;
+diff1_f = 1/norm(dist-delta)^alpha;
+diff1_r = 1/norm(dist-delta+delta2)^alpha;
+diff2_f = 1/norm(-delta2-dist)^alpha;
+diff2_r = 1/norm(dist)^alpha;
 
 gap = (sum1-sum2+sum3-sum4)/gamma(alpha/2);
 gap2 = 2*gap - diff1_f + diff1_r - diff2_f + diff2_r;

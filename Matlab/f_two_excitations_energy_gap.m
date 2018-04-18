@@ -73,7 +73,7 @@ delta2 = delta2(1)*a+delta2(2)*b;
 diff1_f = 1/norm(dist-delta)^alpha;
 diff1_r = 1/norm(dist-delta+delta2)^alpha;
 diff2_f = 1/norm(-delta2-dist)^alpha;
-diff2_r = 1/norm(-delta2-dist+delta)^alpha;
+diff2_r = 1/norm(dist)^alpha;
 
 energy_gap = gap1+gap2-diff1_f+diff1_r-diff2_f+diff2_r;
 end

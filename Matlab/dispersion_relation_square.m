@@ -55,7 +55,7 @@ dist = sqrt(2)*site;
 diff1_f = 1/norm(dist-delta)^alpha;
 diff1_r = 1/norm(dist-delta+delta2)^alpha;
 diff2_f = 1/norm(-delta2-dist)^alpha;
-diff2_r = 1/norm(-delta2-dist+delta)^alpha;
+diff2_r = 1/norm(dist)^alpha;
 
 gap = -diff1_f+diff1_r-diff2_f+diff2_r;
 
@@ -63,22 +63,20 @@ energy2 = 2*energy1 +gap;
 
 %% implementation of the band energy and dispersion relations
 
-v = -0.05;
+v = 0;
 V = 1;
-dx = 0.5;
-dy = 0.5;
 E1 = energy1;
 E2 = energy2;
 t = 1;
 % t = 0.64/2/sqrt(2);
 
-Energy = @(v,t,kx,ky) [E1, -2*v*cos(dx/2-dy/2),0,0,-t*exp(1i*kx/2),-t*exp(-1i*kx/2);...
-     -2*v*cos(dx/2-dy/2), E1,0,0,-t*exp(1i*ky/2),-t*exp(-1i*ky/2);... 
-     0,0,E1,-2*v*cos(dx/2-dy/2),-t*exp(-1i*kx/2),-t*exp(1i*kx/2);...
-     0,0,-2*v*cos(dx/2-dy/2),E1,-t*exp(-1i*ky/2),-t*exp(1i*ky/2);...
+Energy = @(v,t,kx,ky) [E1, -2*v*cos(kx/2-ky/2),0,0,-t*exp(1i*kx/2),-t*exp(-1i*kx/2);...
+     -2*v*cos(kx/2-ky/2), E1,0,0,-t*exp(1i*ky/2),-t*exp(-1i*ky/2);... 
+     0,0,E1,-2*v*cos(kx/2-ky/2),-t*exp(-1i*kx/2),-t*exp(1i*kx/2);...
+     0,0,-2*v*cos(kx/2-ky/2),E1,-t*exp(-1i*ky/2),-t*exp(1i*ky/2);...
      -t*exp(-1i*kx/2),-t*exp(-1i*ky/2),-t*exp(1i*kx/2),-t*exp(1i*ky/2),E2,0;...
      -t*exp(1i*kx/2),-t*exp(1i*ky/2),-t*exp(-1i*kx/2),-t*exp(-1i*ky/2),0,E2];
-
+ 
 x = 1;
 y = 1;
 Band = zeros(20,20,6);
@@ -166,7 +164,7 @@ for i = interval
         [~,D] = eig(Energy(v,t,0,0));
         d = sort(diag(D));
         if abs(d(1))<0.01
-            plot(v/t,1/t,'r*')
+            plot(v/t,1/t,'r*')0
         end
     end
 end
