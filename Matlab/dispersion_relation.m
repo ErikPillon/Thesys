@@ -13,7 +13,7 @@ theta = pi/2;
 
 [energy1,energy2] = f_two_excitations_energy_gap(delta,delta2,site,ratio,theta)
 
-v = 0;
+v = 1;
 V = 1;
 E1 = energy1;
 E2 = energy2;
@@ -112,7 +112,7 @@ for i = interval
         v = i*t;
         [~,D] = eig(Energy(v,t,0,0));
         d = sort(diag(D));
-        if abs(d(1))<0.01
+        if abs(d(1))<0.005
             plot(v/t,1/t,'r*')
         end
     end

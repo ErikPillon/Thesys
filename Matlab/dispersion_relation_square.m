@@ -164,7 +164,7 @@ for i = interval
         [~,D] = eig(Energy(v,t,0,0));
         d = sort(diag(D));
         if abs(d(1))<0.01
-            plot(v/t,1/t,'r*')0
+            plot(v/t,1/t,'r*')
         end
     end
 end
