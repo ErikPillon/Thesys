@@ -31,5 +31,7 @@ title(['Behaviour of energy displacements wrt \alpha.\newline a/b = ' num2str(ra
 xlabel('\alpha')
 ylabel('Energy gap')
 legend('First displacement energy','Second displacement energy')
-% filename = 'Energy comparison: 1 vs 2 displacements';
-% saveas(gcf, filename)
+filename = 'Energy_comparison_triangular:1vs2displacements.eps';
+cd Im/
+saveas(gcf, filename,'epsc')
+cd ..

@@ -24,7 +24,7 @@ R_cut = 10;
 % the final summation is given by 1/gam[sum1-sum2+sum3-sum4];
 sum1 = 0; sum2 = 0; sum3 = 0; sum4 = 0;
 
-alpha_range = [(0.1:0.05:1),(1.5:0.25:3),(4:1:25)];
+alpha_range = [(0.1:0.05:1),(1.5:0.25:3),(4:1:20)];
 %% evaluation of all the terms for each alpha
 index = 1;
 % ewald routine
@@ -78,17 +78,22 @@ end
 figure
 plot(alpha_range, gap1, alpha_range, energy2)
 grid on
-title('Energy gap from ground state')
+title('Energy gap from ground state, squared lattice')
 xlabel('\alpha')
-ylabel('Energy gap (e^2/vol)')
+ylabel('Energy gap $(e^2/vol)$', 'interpreter','latex')
 legend('One displacement','Two displacements')
-saveas(gcf,'Energy_gap.eps','epsc')
+cd Im/
+saveas(gcf,'Energy_gap_squaredLattice.eps','epsc')
+cd ..
+
 % plot the second figure zoomed 
 figure(2)
 plot(alpha_range(1:15), gap1(1:15), alpha_range(1:15), energy2(1:15))
 grid on
-title('Energy gap from ground state')
+title('Energy gap from ground state, squared lattice')
 xlabel('\alpha')
-ylabel('Energy gap (e^2/vol)', 'interpreter', 'latex')
+ylabel('Energy gap $(e^2/vol)$', 'interpreter','latex')
 legend('One displacement','Two displacements')
-saveas(gcf,'Energy_gap_zoomed.eps','epsc')
+cd Im/
+saveas(gcf,'Energy_gap_squaredLattice_zoomed.eps','epsc')
+cd ..

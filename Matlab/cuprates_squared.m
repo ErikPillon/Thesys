@@ -149,30 +149,30 @@ saveas(gcf,figurename,'epsc')
 cd ..
 
 %% Energy level for the gamma point
-% count = 1;
-% V = 1;
-% 
-% Gamma = [0];
-% interval = linspace(-2,2,50);
-% t_int = [linspace(2,1,50),linspace(1,0.05,50)];
-% figure
-% hold on
-% plot(interval,zeros(length(interval),1));
-% for i = interval
-%     for t = t_int
-%         v = i*t;
-%         [~,D] = eig(Energy(v,t,0,0));
-%         d = sort(diag(D));
-%         if abs(d(1))<0.01
-%             plot(v/t,1/t,'r*')
-%         end
-%     end
-% end
-% title('Zero energy level of the \Gamma point on the square lattice')
-% xlabel('v/t','interpreter','latex')
-% ylabel('V/t','interpreter','latex')
-% 
-% cd Im
-% figurename=['zero_energy_level_cuprates.eps'];
-% saveas(gcf,figurename,'epsc')
-% cd ..
+count = 1;
+V = 1;
+
+Gamma = [0];
+interval = linspace(-2,2,50);
+t_int = [linspace(2,1,50),linspace(1,0.05,50)];
+figure
+hold on
+plot(interval,zeros(length(interval),1));
+for i = interval
+    for t = t_int
+        v = i*t;
+        [~,D] = eig(Energy(v,t,0,0));
+        d = sort(diag(D));
+        if abs(d(1))<0.01
+            plot(v/t,1/t,'r*')
+        end
+    end
+end
+title('Zero energy level of the $\Gamma$ point on the cuprates','interpreter','latex')
+xlabel('v/t','interpreter','latex')
+ylabel('V/t','interpreter','latex')
+
+cd Im
+figurename=['zero_energy_level_cuprates.eps'];
+saveas(gcf,figurename,'epsc')
+cd ..
