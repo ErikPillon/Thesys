@@ -1,10 +1,8 @@
 clc; clear all; close all;
-
 %% SQUARE LATTICE CUPRATE
 %
 % script for one and two excitations on a square lattice, that is 
 % theta = pi/2 and ratio = 1 with norm(displacement)=1, i.e, |a|=sqrt(2) 
-
 
 %% initialize all the variables
 alpha = 1;

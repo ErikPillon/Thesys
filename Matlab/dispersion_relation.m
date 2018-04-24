@@ -2,7 +2,7 @@ clc; clear all; close all;
 %% TRIANGULAR LATTICE
 %
 % script for one and two excitations on a trinangular lattice, that is 
-% theta = pi/2 and ratio = 2*sin(pi/3) 
+% theta = pi/2 and ratio = 2*sin(pi/3)=sqrt(3) 
 
 % initialize the variables for the algorithm
 delta = [1/2, 1/2]; % displacement
