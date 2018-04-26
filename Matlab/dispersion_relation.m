@@ -39,6 +39,7 @@ for kx = linspace(-pi,pi,20)
     end
     x = x+1;
 end
+
 a=V/t;
 figure
 titlemessage = ['Electronic Energy bands \break $V/t=$ ' num2str(a) '; $v=$' num2str(v)];
@@ -117,7 +118,7 @@ for i = interval
         end
     end
 end
-title('Zero energy level of the \Gamma point on the triangular lattice')
+title('Zero energy level of the $\Gamma$ point on the triangular lattice','interpreter','latex')
 xlabel('v/t','interpreter','latex')
 ylabel('V/t','interpreter','latex')
 

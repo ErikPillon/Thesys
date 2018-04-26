@@ -1,4 +1,4 @@
-function [energy_gap] = f_one_excitation_energy_gap(delta, ratio, theta, alpha, c) 
+function [energy_gap] = f_test(delta, ratio, theta, alpha, c) 
 % 
 % [energy_gap] = f_one_excitation_energy_gap(delta) 
 % [energy_gap] = f_one_excitation_energy_gap(delta, ratio, theta) 
@@ -37,19 +37,20 @@ if nargin < 5
 end
 
 %% initialize all the variables
+
+G_cut = 10;
+R_cut = 10;
+
 if theta == pi/2
    a = [2*cos(atan(ratio)),0];
    b = [0,2*sin(atan(ratio))];
-   vol = norm(cross([a,0],[b,0]));  
 else
     a = [1, 0];
     rot = [cos(theta), -sin(theta); sin(theta), cos(theta)];
     b = (ratio*rot*a')';
-    vol = ratio*sin(theta);
 end
 
-G_cut = 10;
-R_cut = 10;
+vol = norm(cross([a,0],[b,0]));  
 
 % the displacements must be converted in the lattice coordinate
 delta = delta(1)*a+delta(2)*b; 
@@ -91,4 +92,5 @@ sum4 = f_phi(alpha/2-1,norm(delta)^2*c)-f_phi(alpha/2-1,0);
 sum4 = c^(alpha/2)*sum4;
 
 energy_gap = (sum1-sum2+sum3-sum4)/gamma(alpha/2);
+
 end

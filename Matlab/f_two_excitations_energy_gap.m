@@ -59,9 +59,16 @@ diff1_f = 0; diff1_r = 0; diff2_f = 0; diff2_r = 0;
 % at the end we will need to add the quantity 
 % diff1_r + diff2_r - diff1_f  - diff2_f 
 
-a = [1, 0];
-rot = [cos(theta), -sin(theta); sin(theta), cos(theta)];
-b = (ratio*rot*a')';
+if theta == pi/2
+   a = [2*cos(atan(ratio)),0];
+   b = [0,2*sin(atan(ratio))];
+   vol = norm(cross([a,0],[b,0]));  
+else
+    a = [1, 0];
+    rot = [cos(theta), -sin(theta); sin(theta), cos(theta)];
+    b = (ratio*rot*a')';
+    vol = ratio*sin(theta);
+end
 
 dist = site(1)*a + site(2)*b;
 

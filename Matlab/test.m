@@ -1,11 +1,4 @@
 clc; clear all; close all;
-% algorithm for the implementation of the ewald summation
-% following notes on pages 3 and following
-% 
-% suggested reference "Ewald-Rastelli"
-%
-% this algorithm aims to plot the energy needed for one displacement letting
-% \alpha varying
 
 %% initialize all the variables
 vol = 2;
@@ -24,7 +17,7 @@ R_cut = 10;
 % the final summation is given by 1/gam[sum1-sum2+sum3-sum4];
 sum1 = 0; sum2 = 0; sum3 = 0; sum4 = 0;
 
-alpha_range = [(0.1:0.05:1),(1.5:0.25:3),(4:1:20)];
+alpha_range = 10;
 %% evaluation of all the terms for each alpha
 index = 1;
 % ewald routine
@@ -70,30 +63,7 @@ for alpha = alpha_range
     diff2_f = 1/norm(-delta2-dist)^alpha;
     diff2_r = 1/norm(-delta2-dist+delta)^alpha;
     % update the real energy
-    energy2(index) = gap1(index)+gap2(index)-diff1_f+diff1_r-diff2_f+diff2_r;
+    energy2(index) = gap1(index)+gap2(index)-diff1_f+diff1_r-diff2_f+diff2_r
     index = index+1 %update counter
 end
-
-%% plot the results and save them
-figure
-plot(alpha_range, gap1, alpha_range, energy2)
-grid on
-title('Energy gap from ground state, squared lattice')
-xlabel('\alpha')
-ylabel('Energy gap $(e^2/vol)$', 'interpreter','latex')
-legend('One displacement','Two displacements')
-cd Im/
-saveas(gcf,'Energy_gap_squaredLattice.eps','epsc')
-cd ..
-
-% plot the second figure zoomed 
-figure(2)
-plot(alpha_range(1:15), gap1(1:15), alpha_range(1:15), energy2(1:15))
-grid on
-title('Energy gap from ground state, squared lattice')
-xlabel('\alpha')
-ylabel('Energy gap $(e^2/vol)$', 'interpreter','latex')
-legend('One displacement','Two displacements')
-cd Im/
-saveas(gcf,'Energy_gap_squaredLattice_zoomed.eps','epsc')
-cd ..
+gap1
