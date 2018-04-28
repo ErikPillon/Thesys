@@ -23,7 +23,7 @@ function [energy_gap] = f_one_excitation_energy_gap(delta, ratio, theta, alpha, 
 
 % Check inputs
 if nargin < 5
-  c = 10;
+  c = 3;
   if nargin < 4
     alpha = 1;
     if nargin < 3
@@ -48,8 +48,8 @@ else
     vol = ratio*sin(theta);
 end
 
-G_cut = 10;
-R_cut = 10;
+G_cut = 3;
+R_cut = 3;
 
 % the displacements must be converted in the lattice coordinate
 delta = delta(1)*a+delta(2)*b; 
