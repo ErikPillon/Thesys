@@ -23,13 +23,13 @@ final_state(index) = 0;
 
 dims = sqrt(n);
 
-x = ceil(index/dims);
-y = mod(index,dims);
+x = 1+mod(index-1,dims);
+y = ceil(index/dims);
 M = reshape(final_state,[dims,dims]);
-if M(1+mod(y+d(2)-1,dims),1+mod(x+d(1)-1,dims)) == 1
+if M(1+mod(x+d(2)-1,dims),1+mod(y+d(1)-1,dims)) == 1
     error('f_swap:found 1 but 0 expected');
 else 
-    M(1+mod(y+d(2)-1,dims),1+mod(x+d(1)-1,dims)) = 1;
+    M(1+mod(x+d(2)-1,dims),1+mod(y+d(1)-1,dims)) = 1;
 end
 
-final_state = reshape(M,[1,n]);
+final_state = reshape(M,[n,1])';

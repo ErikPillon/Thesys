@@ -126,3 +126,30 @@ cd Im
 figurename=['zero_energy_level_TriangL.eps'];
 saveas(gcf,figurename,'epsc')
 cd ..
+
+%% Minimum & Maximum Energy level for the gamma point
+% the graph we want is E/t vs V/t 
+count = 1;
+V = 1;
+t_int = linspace(2,0.05,20);
+data = [0,0,0];
+for t = t_int
+    v = 0;
+    [~,D] = eig(Energy(v,t,0,0));
+    d = sort(diag(D));
+    data(count,:) = [V/t,d(1)/t,d(end)/t]
+    count = count+1;
+end
+figure
+plot(data(:,1),data(:,2),data(:,1),data(:,3))
+xlabel('V/t','interpreter','latex')
+ylabel('E/t','interpreter','latex')
+title('something')
+grid on
+% 
+% cd Im
+% figurename=['zero_energy_level_TriangL.eps'];
+% saveas(gcf,figurename,'epsc')
+% cd ..
+% 
+

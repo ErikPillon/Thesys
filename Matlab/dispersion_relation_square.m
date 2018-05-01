@@ -4,62 +4,7 @@ clc; clear all; close all;
 %
 % script for one and two excitations on a square lattice, that is 
 % theta = pi/2 and ratio = 1 with norm(displacement)=1, i.e, |a|=sqrt(2) 
-
-
-%% initialize all the variables
-alpha = 1;
-vol = 2;%the more rapid will be the convergence of the  summations.
-c = 5; % convergence coefficient
-
-delta = sqrt(2)*[1/2, 1/2]; % displacement of the electron
-site = [0,1];
-delta2 = sqrt(2)*[-1/2, -1/2];
-
-G_cut = 10;
-R_cut = G_cut;
-
-% the final summation is given by 1/gam[sum1-sum2+sum3-sum4];
-sum1 = 0; sum2 = 0; sum3 = 0; sum4 = 0;
-
-%% evaluation of all the terms
-% sum1
-for Gx = -G_cut:G_cut
-    for Gy = -G_cut:G_cut
-        G = pi*sqrt(2)*[Gx, Gy];
-        sum1 = sum1+((cos(G*delta')-1)*f_phi(-alpha/2,G*G'/4/c));
-    end
-end
-sum1 = sum1*pi*c^(alpha/2-1)/vol;
-
-% sum2
-sum2 = f_selfinteraction(norm(delta),c,alpha)-f_selfinteraction(0,c,alpha);
-
-% sum3
-for Rx = -R_cut:R_cut
-    for Ry = -R_cut:R_cut
-        R = sqrt(2)*[Rx, Ry];
-        sum3=sum3+(f_phi(alpha/2-1,norm(R+delta)^2*c)-f_phi(alpha/2-1,norm(R)^2*c));
-    end
-end
-sum3 = sum3*c^(alpha/2);
-
-% sum4
-sum4 = f_phi(alpha/2-1,norm(delta)^2*c)-f_phi(alpha/2-1,0);
-sum4 = c^(alpha/2)*sum4;
-
-energy1 = (sum1-sum2+sum3-sum4)/gamma(alpha/2);
-
-dist = sqrt(2)*site;
-
-% evaluate directly the energy difference
-diff1_f = 1/norm(dist-delta)^alpha;
-diff1_r = 1/norm(dist-delta+delta2)^alpha;
-diff2_f = 1/norm(-delta2-dist)^alpha;
-diff2_r = 1/norm(dist)^alpha;
-
-gap = -diff1_f+diff1_r-diff2_f+diff2_r;
-
-energy2 = 2*energy1 +gap;
+[energy1,energy2] = f_two_excitations_energy_gap([1,1]/2,-[1,1]/2,[1,0],1,pi/2);
 
 %% implementation of the band energy and dispersion relations
 v = 0; %does not appear in the square lattice
@@ -145,3 +90,30 @@ cd Im
 figurename=['DispR_squareL_Vt_' num2str(a) '_v_'  num2str(v) '.eps'];
 saveas(gcf,figurename,'epsc')
 cd ..
+
+%% Minimum & Maximum Energy level for the gamma point
+% the graph we want is E/t vs V/t 
+count = 1;
+V = 1;
+t_int = linspace(2,0.05,20);
+data = [0,0,0];
+for t = t_int
+    v = 0;
+    [~,D] = eig(Energy(v,t,0,0));
+    d = sort(diag(D));
+    data(count,:) = [V/t,d(1)/t,d(end)/t]
+    count = count+1;
+end
+figure
+plot(data(:,1),data(:,2),data(:,1),data(:,3))
+xlabel('V/t','interpreter','latex')
+ylabel('E/t','interpreter','latex')
+title('something')
+grid on
+% 
+% cd Im
+% figurename=['zero_energy_level_TriangL.eps'];
+% saveas(gcf,figurename,'epsc')
+% cd ..
+% 
+
