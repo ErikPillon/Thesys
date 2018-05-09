@@ -98,7 +98,7 @@ V = 1;
 t_int = linspace(2,0.05,20);
 data = [0,0,0];
 for t = t_int
-    v = 0;
+    v = 1;
     [~,D] = eig(Energy(v,t,0,0));
     d = sort(diag(D));
     data(count,:) = [V/t,d(1)/t,d(end)/t]
@@ -110,6 +110,7 @@ xlabel('V/t','interpreter','latex')
 ylabel('E/t','interpreter','latex')
 title('something')
 grid on
+
 % 
 % cd Im
 % figurename=['zero_energy_level_TriangL.eps'];

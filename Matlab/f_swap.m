@@ -7,6 +7,22 @@ function final_state = f_swap(state, index, displacement)
 %
 % OUTPUT
 %
+% EXAMPLE
+% For the case of n=4 the lattice at the beginning will be 
+% 
+%     0   1   0   1
+%     1   0   1   0
+%     0   1   0   1
+%     1   0   1   0   
+% 
+% and if we swap the state with index 1 of displacement [-1,0] we'll have
+%  
+%      0     0     1     1
+%      0     1     0     1
+%      1     0     1     0
+%      0     1     0     1
+%
+
 d = displacement;
 
 % foolproof check
