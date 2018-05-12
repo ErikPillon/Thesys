@@ -1,13 +1,7 @@
-% If one check the row and the column of the effective Hamiltonian in the
-% position nSt+1 is zero everywhere. That means that is useless. I only
-% have to erase that row/column and so there's not the mismatch with the
-% potential dimensions anymore. 
-
-% ------------------ TO CHECK ---------------------------------------------
-
 % this script is intended to be the implementation of the exact
 % diagonalization for the effective Hamiltonian for our system
-clc; clear all; close all;
+
+% clc; clear all; close all;
 
 % dimension of the lattice to study. Needs to be and even number, in order
 % to preserve the periodic boundary conditions
@@ -89,14 +83,14 @@ t_int = linspace(0.2,0.05,20);
 data = [0,0,0];
 
 count = 1;
-for t = t_int
+for t = 0.05
     States2 = zeros(1,n^2+2);
     eff_H = zeros(2);
     for fds = 1:nSt
         % fds = first displaced state
         index = States(fds,end);
-        x = ceil(index/n);
-        y = mod(index,n);
+        x = 1+mod(index-1,n);
+        y = ceil(index/n);
         s = States(fds,1:n^2);
         switch States(fds,end-1)
             case 1
@@ -140,7 +134,7 @@ for t = t_int
                 % nc = new configuration
                 [States2,eff_H] = f_sec_disp(s,site,d,nc,States2,t,eff_H,nSt,fds);
             case 3
-                d = [0,1];
+                d = [0,-1];
                 % d = displacement
                 rc = [1,1];
                 % rc = relative coordinates
@@ -201,22 +195,22 @@ for t = t_int
 end
 disp('Effective Hamiltonian finished')
 
-% figure
-% plot(data(:,1),data(:,2),data(:,1),data(:,3))
-% xlabel('V/t','interpreter','latex')
-% ylabel('E/t','interpreter','latex')
-% title('something')
-% grid on
-% 
-% figure
-% histogram(d,50)
-% title('exact diagonalization eigenvalues effective Hamiltonian')
-% xlabel('energy spectrum')
-% ylabel('frequency')
-% dim = [0.2 0.5 0.3 0.3];
-% str = {'Square lattice','minimum image convention used'};
-% annotation('textbox',dim,'String',str,'FitBoxToText','on');
-% 
+figure
+plot(data(:,1),data(:,2),data(:,1),data(:,3))
+xlabel('V/t','interpreter','latex')
+ylabel('E/t','interpreter','latex')
+title('something')
+grid on
+
+figure
+histogram(d,50)
+title('exact diagonalization eigenvalues effective Hamiltonian')
+xlabel('energy spectrum')
+ylabel('frequency')
+dim = [0.2 0.5 0.3 0.3];
+str = {'Square lattice','minimum image convention used'};
+annotation('textbox',dim,'String',str,'FitBoxToText','on');
+
 % cd Im
 % figurename=['valori_provvisori_ED.eps'];
 % saveas(gcf,figurename,'epsc')

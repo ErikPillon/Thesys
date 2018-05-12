@@ -13,7 +13,7 @@ function [States2, eff_H] = f_sec_disp(s,site,d,nc,States2,t,eff_H,nSt,fds)
 % for obtaining
 % [ 1 0 1 0 0 0 0 1 1 1 1 0 0 1 0 1]
 % 
-
+%
 % first part of the Slater determinant
 num = sum(s(1:site-1));
 dims = sqrt(length(s));
@@ -24,26 +24,11 @@ yn = 1+mod(y+d(1)-1,dims);
 new_site = (yn-1)*dims+xn;
 
 % create the new state
-r = f_swap(s,site,d);
+r = f_swap(s,site,d);   
 
 num = num+sum(r(1:new_site-1)); % second part os Slater determinant
 
-% pos = 1;
-% flag = 0;
-% for l=1:length(States2(:,1))
-%     if r == States2(l,1:end-2)
-%         eff_H(fds,nSt+l) = t*(-1)^num;
-%         flag = 1;
-%     end
-%     pos = pos+1;
-% end
-% pos = pos-1;
-% 
-% if flag == 0
-%     States2(end+1,:) = [r,new_site,nc];
-%     eff_H(fds,nSt+pos) = t*(-1)^num;
-% end
-
+%% add t ot -t
 pos = 0;
 flag = 0;
 while flag == 0 && pos<length(States2(:,1))
@@ -58,5 +43,3 @@ if flag == 0
     States2(end+1,:) = [r,new_site,nc];
     eff_H(fds,nSt+pos+1) = t*(-1)^num;
 end
-
-
