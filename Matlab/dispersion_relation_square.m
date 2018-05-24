@@ -11,7 +11,7 @@ v = 0; %does not appear in the square lattice
 V = 1;
 E1 = energy1;
 E2 = energy2;
-t = 5;
+t = 0.05;
 % t = 0.64/2/sqrt(2);
 
 Energy = @(v,t,kx,ky) [E1, 0,0,0,-t*exp(1i*kx/2),-t*exp(-1i*kx/2);...
@@ -54,21 +54,21 @@ cd ..
 Disp_r = zeros(6,1);
 count = 1;
 
-k_gm = linspace(0,pi,50);
+k_gm = linspace(0,pi,100);
 for k = k_gm
     [~,D] = eig(Energy(v,t,k,k));
     Disp_r(:,count) = diag(D);
     count = count+1;
 end
 
-k_mx = linspace(pi,0,50);
+k_mx = linspace(pi,0,100);
 for k = k_mx
     [~,D] = eig(Energy(v,t,pi,k));
     Disp_r(:,count) = diag(D);
     count = count+1;
 end
 
-k_xg = linspace(pi,0,50);
+k_xg = linspace(pi,0,100);
 for k = k_xg
     [~,D] = eig(Energy(v,t,k,0));
     Disp_r(:,count) = diag(D);
@@ -93,23 +93,23 @@ cd ..
 
 %% Minimum & Maximum Energy level for the gamma point
 % the graph we want is E/t vs V/t 
-count = 1;
-V = 1;
-t_int = linspace(2,0.05,20);
-data = [0,0,0];
-for t = t_int
-    v = 1;
-    [~,D] = eig(Energy(v,t,0,0));
-    d = sort(diag(D));
-    data(count,:) = [V/t,d(1)/t,d(end)/t]
-    count = count+1;
-end
-figure
-plot(data(:,1),data(:,2),data(:,1),data(:,3))
-xlabel('V/t','interpreter','latex')
-ylabel('E/t','interpreter','latex')
-title('something')
-grid on
+% count = 1;
+% V = 1;
+% t_int = linspace(2,0.05,20);
+% data = [0,0,0];
+% for t = t_int
+%     v = 1;
+%     [~,D] = eig(Energy(v,t,0,0));
+%     d = sort(diag(D));
+%     data(count,:) = [V/t,d(1)/t,d(end)/t]
+%     count = count+1;
+% end
+% figure
+% plot(data(:,1),data(:,2),data(:,1),data(:,3))
+% xlabel('V/t','interpreter','latex')
+% ylabel('E/t','interpreter','latex')
+% title('something')
+% grid on
 
 % 
 % cd Im

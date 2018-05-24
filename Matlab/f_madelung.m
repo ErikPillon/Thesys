@@ -1,11 +1,21 @@
 function [energy1, energy2] = f_madelung(n,alpha)
+% This function is intended for evaluate the Madelung energy in a finite
+% size cluster; therefore minimum image convention is used; the energy for
+% the double displacement is evaluated with the same trick for the Ewald
+% formula
+%
 % INPUT 
+% n     : size of the cluster (4 => 4x4 half filled cluster) 
+% alpha : rate of the exponential decay
 % 
 % OUTPUT
-% 
+% energy1 : energy for the first displacement
+% energy2 : energy for the two coupled displacement
+%
 % NB
-% 
-% 
+% * Minimum image convention used *
+% * 
+
 % Check inputs
 if nargin < 2
   alpha = 1;

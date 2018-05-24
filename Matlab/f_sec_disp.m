@@ -26,7 +26,7 @@ new_site = (yn-1)*dims+xn;
 % create the new state
 r = f_swap(s,site,d);   
 
-num = num+sum(r(1:new_site-1)); % second part os Slater determinant
+num = num + sum(r(1:new_site-1)); % second part os Slater determinant
 
 %% add t ot -t
 pos = 0;
